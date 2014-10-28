@@ -1,7 +1,6 @@
 ---
 layout: post
 title: XCode 6.1 SourceKit keep crashing
-date:   2014-10-28 21:00:00
 categories: xcode
 ---
 

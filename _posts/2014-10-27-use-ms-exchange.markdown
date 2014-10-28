@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Try MS Exchange Online"
-date:   2014-10-27 03:35:00
 categories: microsoft
 ---
 

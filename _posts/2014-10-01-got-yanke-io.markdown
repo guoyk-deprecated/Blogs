@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Got yanke.io"
-date:   2014-10-02 04:18:00
 categories: me
 ---
 
