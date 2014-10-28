@@ -1,18 +1,18 @@
 ---
 layout: post
-title:  "试用 Microsoft Exchange Online"
+title:  "Try MS Exchange Online"
 date:   2014-10-27 03:35:00
 categories: microsoft
 ---
 
-之前一直对微软的服务抱有偏见，这次为了打破偏见，故意使用了微软的Exchange Online服务。
+For a long time, I have prejudice of services provided by `Microsoft`.
 
-配置过程中感受到了一股浓浓的微软风，打开控制台，明明感觉很简单的服务却有几十个页面，上百个配置项目。
+So, this time, for email system on private domain, I decide to use `MS Exchange Online`
 
-当然，基础配置还是非常简单的，但是高级配置确有各种复杂的选项。
+The configuration process is very `Microsoft-style`. 
 
-乍看上去非常麻烦，但是稍微思考一下就明白其中有很强的逻辑性在里面，随后就有一种安心感。
+When I opened the dashboard, I saw tens of page entries, which mean hundreds of configurable items are waiting for me.
 
-当然，界面真是不敢恭维。噗噗。。
+Of cause, make it work is definitely quick and simple, but it also provides tons of options for advanced configurations, and all of them do make sense.
 
-以上。
+Complex and reliable, this is my conclusion.
