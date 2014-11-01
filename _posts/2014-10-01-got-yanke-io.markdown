@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Got yanke.io"
-categories: me
 ---
 
 Bought the domain `yanke.io`

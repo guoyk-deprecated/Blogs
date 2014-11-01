@@ -1,7 +1,6 @@
 ---
 layout: post
 title: XCode 6.1 SourceKit keep crashing
-categories: xcode
 ---
 
 While editing a `swift` file in a iOS project, XCode 6.1 SourceKit keep crashing, making syntax highlight and hint totoally not working.

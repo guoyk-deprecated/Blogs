@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Try MS Exchange Online"
-categories: microsoft
 ---
 
 For a long time, I have prejudice of services provided by `Microsoft`.

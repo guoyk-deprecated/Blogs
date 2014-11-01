@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Introduction to ACKeyboardObserver
-categories: ios
 ---
 
 A small class which turns 6 keyboard notifications into a delegate with two methods, extracting values from `NSNotification`,  and providing an easy-to-use function for making a keyboard related animation.
