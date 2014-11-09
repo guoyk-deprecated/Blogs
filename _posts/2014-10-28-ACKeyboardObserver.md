@@ -5,6 +5,14 @@ title: Introduction to ACKeyboardObserver
 
 A small class which turns 6 keyboard notifications into a delegate with two methods, extracting values from `NSNotification`,  and providing an easy-to-use function for making a keyboard related animation.
 
+## Install
+
+Via `CocoaPods`
+
+```ruby
+pod 'ACKeyboardObserver', '~> 0.1'
+```
+
 ## Usage
 
 - Implement `ACKeyboardObserverDelegate` in view controller.
