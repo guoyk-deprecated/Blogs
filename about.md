@@ -1,12 +1,12 @@
 ---
 layout: page
-title: 关于我
+title: About me
 ---
 
-各种意义上都是矛盾的混合体，
+Complex of contradictions in all sense.
 
-*   阳光宅男
-*   有女朋友的程序员
-*   幼龄CTO
+*   Cheery Otaku
+*   Programmer having GF
+*   Young CTO
 
 GPG Public Key [8C4D9C36.asc](/8C4D9C36.asc)
