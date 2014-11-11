@@ -453,7 +453,7 @@ margin on the iframe, cause it breaks stuff. */
 }
 
 .post-meta {
-    display: inline-block;
+    text-align: right;
     margin: 0 0 5px 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;

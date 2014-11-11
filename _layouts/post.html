@@ -17,7 +17,7 @@ archive: false
             </a>
         </header>
         
-        <span class="post-meta">
+        <div class="post-meta">
         	<time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
         	{% if page.categories %}
         		on
@@ -25,7 +25,7 @@ archive: false
 	        	    {{category}}
 	        	{% endfor %}
 	        {% endif %}
-       	</span>
+       	</div>
 
         <h1 class="post-title">{{ page.title }}</h1>
 
@@ -48,12 +48,14 @@ archive: false
         	<!-- If we want to display author's name and bio -->
             {% if site.author %}
                 <section class="author">
-                	<header> <a href="{{ site.baseurl }}"> <img class="profile" src="/assets/images/profile.png" alt="Author's profile picture"></a></header>
+                <header> 
+                  <a href="{{ site.baseurl }}"> <img class="profile" src="{{ site.author_avatar }}" alt="Author's profile picture"></a>
+                </header>
                 	<article>
                 		<!-- Author Name -->
                     	<h4> {{ site.author }} </h4>
-                    	<!-- Author Bio -->
                     	<p> 
+                        <a href="mailto:{{ site.author_email }}">{{ site.author_email }} </a>
                     	</p>
                     </article>
                 </section>                

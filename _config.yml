@@ -1,4 +1,4 @@
-name: Y.A.H.C.
+name: yanke.io
 description: Yet Another Happy Coder.
 meta_description: "Yet Another Happy Coder."
 
@@ -11,3 +11,5 @@ paginate: 15
 baseurl:        '/'
 url:            'http://blog.yanke.io'
 author:         'YANKE Guo'
+author_avatar:  '/assets/images/profile.png'
+author_email:   'hi@yanke.io'
