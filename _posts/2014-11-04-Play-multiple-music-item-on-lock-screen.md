@@ -1,22 +1,21 @@
 ---
 layout: post
-title: Play multiple music items in background
+title: iOS 后台播放音频的坑
 ---
+在开发同人音声播放器 `SheepPlayer` 中，遇到了一些 iOS 应用后台的一些坑。
 
-iOS has a strict background mechanism.
+iOS 的后台策略众所周知的非常严格，如果想要在后台播放多个独立的音频项目，比如说锁屏状态下，建议使用`AVQueuePlayer`，而不是`AVAudioPlayer`。
 
-If you want to play multiple music item in background, i.e. with lock screen on.
+苹果说，要有光（泥奏凯）。苹果说，即便是开启了 `Background Mode` 的 `audio` 选项，一旦音频播放器停止播放，应用就会立即暂停运行。
 
-It is suggested to use a `AVQueuePlayer` instead of `AVAudioPlayer`
+如果是 `AVAudioPlayer` 的话，一旦播放完成，应用就立即被暂停，没有再次启动一个 `AVAudioPlayer` 播放下一个音频的机会。
 
-Apple says, once player stoped playing, even with background mode set to `audio`, the app suspend immediatelly.
+但是，如果使用 `AVQueuePlayer` ，直到所有项目播放完成，应用才会被休眠。
 
-That makes no chance to start a new `AVAudioPlayer` after previous `AVAudioPlayer` finished.
+> PS：
 
-With `AVQueuePlayer`, until all items are played, `AVQueuePlayer` declares itself as done.
+> 如果要在锁屏状态下播放音乐，被播放的文件必须设置 `NSFileProtectionKey` 为 `NSFileProtectionNone`。否则会被iOS的文件加密机制阻拦，出现找不到文件错误。
 
-Also, it's important to set `NSFileProtectionKey` to `NSFileProtectionNone` for files gonna queued.
+> PPS:
 
-Especially, `NSFileProtectionKey`of files in `Documents/Inbox`, i.e. files opened from other apps, cannot be modified.
-
-Consider moving them out of that folder. (NOT TESTED)
+> `Documents/Inbox` 文件夹内的文件（就是从其他应用打开的文件），只能读取或者删除，是没法修改的，包括修改文件属性。一般情况下，大家都会把文件拷出来，再做处理。

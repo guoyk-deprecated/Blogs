@@ -1,72 +1,70 @@
 ---
 layout: post
-title: A Triple Trap While Debugging iOS App
+title: 记一次 iOS Debug 三重坑
 ---
 
-Recently, I got a triple trap while debugging a iOS App.
+最近，在Debug的时候，掉进了一个三重坑，许久才爬上来。
 
-The problem is quite wired, the release version (installed by AdHoc remotely) of my app crash once opened. But debug version works fine.
+问题表象很令人纠结，直接 `⌘ + R` 本地运行的App没有问题，但是一旦 `Archive` ，`AdHoc` 分发了之后，别人装上了一启动就闪退。
 
-At first, I thought it was a code-signing/provision problem, but it was not.
+刚开始我以为是代码签名/配给文件的原因，后来发现远没有这么简单。
 
-### Launch the release version locally
+### 本地运行 `Release` 版本
 
-I switch configuration from `debug` to `release` in product schema, thus I can **launch the release version**.
+修改 `Schema` ，让 `⌘ + R`能够启动 `Release` 配置下编译的App。
 
 ![ScreenShot1](/assets/images/screenshot-1.jpg)
 
-This dialog can be opened by pressing `⌘ + <`, or selecting from `Product` -> `Schema` -> `Edit Schema...`.
+可以通过 `⌘ + <` 快捷键打开这个对话框，或者从菜单中点选 `Product` -> `Schema` -> `Edit Schema...`。
 
-The alternative way is to `Profile` the product with `release` configuration by default.
+另外一种方式是跑 `Profile`，默认也是 `Release` 配置。
 
-Then it crashed, so it was not code-signing/provision problem. 
+然后就不负众望地崩溃了，感觉不像是代码签名的问题。并且 XCode 给我报了启动超时的错误，让我有种不祥的预感（卧槽是不是我用Swift写了太多静态变量)。
 
-The binary generated with `release` configuration somehow has bugs that crash.
+### Time Profile
 
-I'v also noticed Xcode complains several times that app launch time exceeded.
+`Instruments` 绝对是神器，相比之下安卓的调试工具简直是战五渣。
 
-### Profile
+`⌘ + I`后，我选择了 `Time Profiler` 这个模板，这样我可以看到启动的时候，哪个方法消耗的时间最久。
 
-`Instruments` is definitely the most handy mobile debug tool. It makes Android debug process like playing house.
+结果显示 `NewRelic` `NewRelic.startWithApplicationToken("XXXX")` 这个方法，吃了四分之一的启动时间。导致 `AppDelegate` 在方法 `application(_:didFinishLaunchingWithOptions:)` 中卡了太久，没有返回 `true`。
 
-I choose the `Time Profiler` template, by which I can see what takes the most of time while app is running.
+然后iOS仁慈地把App杀了。
 
-The report indicated that the initializing of NewRelic `NewRelic.startWithApplicationToken("XXXX")` consumes a quarter of the launch time.
+妥妥地给这个调用括上 `dispatch_async`，哪凉快哪呆着去。
 
-This took the `AppDelegate` a long time before return `true` in method `application(_:didFinishLaunchingWithOptions:)`, so iOS kill the app.
+启动崩溃的问题解决了，但是有两个 view controller 还是处于一点就崩溃的状态。
 
-This issue is solved by wrapping NewRelic initializing code with `dispatch_async`, no more kill at launch.
+### 崩溃日志
 
-But there still exist two view controllers which crash every time on loading.
+崩溃日志可以在`Devices (⌘ + Shift + 2)`窗口找到，选择一个设备，点击`Crash Logs`，等一下就能看到设备上的崩溃日志。
 
-### Crash Logs
+Xcode 会自动地符号化所有内存地址，这样看日志就不会像看天书一样对着一堆内存偏移发蒙了。所有的地址都会标注上方法名，哪个文件的哪一行。
 
-Crash logs on device can be collected from `Devices` window. All logs will be symbolicated (convert hex memory address to method names and source line numbers) automatically.
-
-After checking the log, I've successfully located one line of `Swift` code ( same code in two view controlelrs ) :
+藉此，我定位了一行出现问题的代码。
 
 ```swift
 gDAO.fetchQuestionsForGroupID(self.group!.id as Int, loadMore: loadMore)
 ```
 
-`self.group` is a instance of `Objective-C` class, `self.group.id` is a `NSNumber` which will never be nil.
+`self.group` 是一个 `Objective-C` 写的类（为了使用JSONModel我也是蛮拼的），`self.group.id` 是一个 `NSNumber`，理论上不会为`nil`。
 
-It seems the conversion from `NSNumber` to `Int` crashes when swift code is compiled with `release` configuration.
+看样子 `NSNumber` 用 `as`转换成 `Int` (Swift) 在 `Release` 配置下会崩溃，但是 `Debug` 配置不会，估计是开启优化参数之后，行为多少有些不同。
 
-Problem solved by changing that line to :
+改成下面这样就好了:
 
 ```swift
 gDAO.fetchQuestionsForGroupID(self.group!.id.integerValue, loadMore: loadMore)
 ```
 
-### In-house Distribution
+### In-house 分发
 
-I've been using a free iOS in-house distribution service for team testing for a long time, but this time, Apps signed by their enterprise certificates failed to start. Only Apps distributed in AdHoc can be opened by our testing team.
+我常年使用某网站提供的免费企业证书签发服务，然后这次被坑了。用他们的企业证书签发的应用启动就崩溃，但是如果是 AdHoc 的话，就木有问题。
 
-### Conclusion
+### 结论
 
-At first glance, the problem I've experienced seems to be very knotty, it was caused by three independent reasons.
+`Debug` 没问题 `Release` 就崩溃到不行，乍听上去这问题太难解决了，实则不然。
 
-But the `release` version of App remains highly trackable and testable, and all the differences between `debug` and `release` are locatable (code-signing, compiler optimization, etc).
+即便是 `Release` 状态下的 App，苹果依旧提供了很多可以调试的方法，并且 `Debug` 和 `Release` 之间的区别都是可以追踪的，无非是代码签名，编译器优化选项等等，一个一个排除，最终能够解决。
 
 > The victory shall be mine.

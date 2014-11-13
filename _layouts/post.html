@@ -18,13 +18,7 @@ archive: false
         </header>
         
         <div class="post-meta">
-        	<time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
-        	{% if page.categories %}
-        		on
-	        	{% for category in page.categories %}
-	        	    {{category}}
-	        	{% endfor %}
-	        {% endif %}
+        	<time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date: "%Y年%m月%d日" }}</time>
        	</div>
 
         <h1 class="post-title">{{ page.title }}</h1>
@@ -38,7 +32,7 @@ archive: false
         	<h5>Archive</h5>
     		<ul>
     			{% for post in site.posts %}
-    				<li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
+    				<li><span>{{ post.date | date: "%Y年%m月%d日" }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
     			{% endfor %}	
     		</ul>
         </section>
@@ -62,7 +56,7 @@ archive: false
             {% endif %}
 
             <section class="share">
-                <h4>Share this post</h4>
+                <h4>分享本文</h4>
                 <a class="icon-twitter" href="http://twitter.com/share?text={{page.title}}&amp;url={{site.url}}{{ page.url }}"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>

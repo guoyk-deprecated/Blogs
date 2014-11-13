@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "Got yanke.io"
+title:  "yanke.io 到手"
 ---
 
-Bought the domain `yanke.io`
+果断买下`yanke.io`这个域名。
 
-I have to say `.io` domains is quite expensive comparing with `.com`
+话说`.io`域名比`.com`贵了好多啊。
 
 > This is my world, my world !
-> - Agent Smith
+
+> By Agent Smith

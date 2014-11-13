@@ -1,7 +1,10 @@
 ---
 layout: post
-title: Use CADisplayLink for Better iOS Animation
+title: "[转载]使用 CADisplayLink 对齐自定义drawRect"
 ---
+
+摘录的一片文章，讲述如何使用 `CADisplayLink` 对齐自定义drawRect以优化性能。
+
 > Orignal Title:  The Holy Grail of iOS Animation Intervals?
 
 > Orignal Author: BEN BOJKO

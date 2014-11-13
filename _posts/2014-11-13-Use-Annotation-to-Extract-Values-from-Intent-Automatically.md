@@ -1,17 +1,19 @@
 ---
 layout: post
-title: Use Annotation to Extract Values from Intent Automatically
+title: 使用 Java Annotation 来自动获取 Intent 的 Extra
 ---
 
-`Annotation` is the most fancy part of Java. Using `Annotation` correctlly could save you a lot of time.
+没错，是的，这是一篇 Android 相关的文章，`Annotation(注解)` 是 Java 最丧病的一个能力，合理使用可以省下一大坨代码。
 
-Consider the situation when you want to extract values from `intent` during `onCreate` of a Activity.
+一个典型场景，从一个 Activity 启动另一个 Activity，一般通过在 Intent 里面的 Extra 放上可序列化的对象来实现传值。
 
-The normal way, you have to call `this.field = intent.getSerializableExtra("field_name")` one by one, and type the key being passed in carefully.
+> 谷歌设计这个的初衷是为了实现跨应用启动 Activity，结果导致了同一个应用内的两个 Activity 无法方便地获取到彼此的引用。(谜之瞎扯)
 
-With Java Annotation, this process can be simplified to one word by adding a bit seasoning.
+一般情况下，在第二个 Activity 中会用 `this.field = intent.getSerializableExtra("field_name")` 来一个一个拆出传过来的值。
 
-## Declare Annotation
+这样繁琐的过程，必定有好用的解决方案，那就是 `Annotation`。
+
+## 声明 Annotation
 
 ```java
 package io.yanke.Askala;
@@ -33,9 +35,9 @@ import java.lang.annotation.Target;
   }
 ```
 
-I declared a very simple `Annotation` named `IntentValue`, the `value()` stored the key, default to `""`.
+这几乎是最简单的 `Annotation` 声明，定义 `value()` 并且赋了一个默认值，这样就可以使用 `@IntentValue("name")`或者`@IntentValue`的写法，而不是`@IntentValue(key="value")`了。
 
-## Create a base class for Activity
+## 创建一个基类
 
 ```java
 //...
@@ -44,19 +46,19 @@ I declared a very simple `Annotation` named `IntentValue`, the `value()` stored 
 protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
 
-  Intent intent = getIntent();                      // Get the intent
-  Field[] fields = this.getClass().getFields();     // Get all fields of runtime class using Reflect
+  Intent intent = getIntent();                      // 获取 intent
+  Field[] fields = this.getClass().getFields();     // 反射获取当前Class的所有成员变量声明
 
-  for (Field field : fields) {                      // Enumerate over all fields
-    IntentValue value = field.getAnnotation(IntentValue.class);     // Get the Annotation
+  for (Field field : fields) {                      // 遍历所有成员变量声明
+    IntentValue value = field.getAnnotation(IntentValue.class);     // 查找是否有`IntentValue`注解
     if (value != null) {
-      String key = value.value();                   // Get the value
-      if (key.equalsIgnoreCase("")) {               // If 'value()` equals '', use the field name as key
+      String key = value.value();                   // 拿到注解的`value()`
+      if (key.equalsIgnoreCase("")) {               // 如果'value()`等于空, 就使用成员变量名当做key
         key = field.getName();
       }
-      Object obj = intent.getSerializableExtra(key);    // Get the object from intent, be noticed, `getSerializableExtra` is safe for `String`, `Integer`, etc
+      Object obj = intent.getSerializableExtra(key);// 从 intent 中拿对象，注意 `getSerializableExtra` 可以用于 `String`, `Integer`, 等等
       try {
-        field.set(this, obj);                       // Try set the field by Reflect
+        field.set(this, obj);                       // 试图使用反射赋值
       } catch (IllegalAccessException e) {
         e.printStackTrace();
       }
@@ -67,24 +69,24 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-Add code above in `onCreate` of `BaseActivity` and make all activities inherit from it.
+创建一个基类如上，然后让所有的 Activity 继承它。
 
-## Add Annotation to fields
+## 给成员变量加上注解
 
 ```java
 public class SecondActivity extends BaseActivity {
 
-  @IntentValue                      // Use field name as key in intent by default
+  @IntentValue                      // 默认使用成员变量的名字作为key
   public String test = "BBBBB";
 
-  @IntentValue("test2")             // Use custom key
+  @IntentValue("test2")             // 自定义一个key
   public String testt = "AAAA";
 
   //...
 }
 ```
 
-## Start Activity using Intent normally
+## 像往常一样地启动一个 Activity
 
 ```java
 Intent intent = new Intent();
@@ -94,4 +96,6 @@ intent.putExtra("test2","aaaaaaaaa");
 startActivity(intent);
 ```
 
-Voila, value for `test` will be automatically mapped to `SecondActivity.test`, and `test2` will be mapped to `SecondActivity.testt` as specified by annotation.
+这样，通过`Annotation`，`intent` 的 `extras` 中的 `test` 会被自动地赋值给 `SecondActivity.test`，然后 `test2` 会被赋值给 `SecondActivity.testt`。
+
+是不是一大坨代码都给省掉了，看着倍儿爽。

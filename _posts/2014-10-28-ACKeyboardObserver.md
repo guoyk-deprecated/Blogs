@@ -1,42 +1,37 @@
 ---
 layout: post
-title: Introduction to ACKeyboardObserver
+title: 自己写的 ACKeyboardObserver
 ---
 
-A small class which turns 6 keyboard notifications into a delegate with two methods, extracting values from `NSNotification`,  and providing an easy-to-use function for making a keyboard related animation.
+这是一个非常小的类，主要目的是把键盘相关的6个通知，转换为Delegate方式。
+同时自带一个函数，用于快速实现键盘相关动画。
 
-## Installation
+## 安装
 
-Via `CocoaPods`:
+使用 `CocoaPods`:
 
 ```ruby
 pod 'ACKeyboardObserver', '~> 0.1'
 ```
 
-Manually:
+手工:
 
 [https://github.com/yanke-guo/ACKeyboardObserver](https://github.com/yanke-guo/ACKeyboardObserver)
 
-## Usage
+## 食用方法
 
-- Implement `ACKeyboardObserverDelegate` in view controller.
+- 在 ViewController 中实现 `ACKeyboardObserverDelegate`
 
 ```objective-c
 - (void)keyboardWillEmitEvent:(ACKeyboardEvent)event withChange:(ACKeyboardChange)change;
 - (void)keyboardDidEmitEvent:(ACKeyboardEvent)event withChange:(ACKeyboardChange)change;
 ```
 
-- Initialize a instance.
+- 初始化一个对象
 
 ```objective-c
 self.keyboardObserver = [ACKeyboardObserver observerWithDelegate:self];
 [self.keyboardObserver start];
 ```
 
-- Use `ACKeyboardFastAnimate` to create a keyboard-related animation in delegate methods.
-
-## Files
-
-- [ACKeyboardObserver.h](/files/ACKeyboardObserver/ACKeyboardObserver.h)
-
-- [ACKeyboardObserver.m](/files/ACKeyboardObserver/ACKeyboardObserver.m)
+- 使用 `ACKeyboardFastAnimate` 函数来快速实现键盘相关动画

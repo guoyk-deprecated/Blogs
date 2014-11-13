@@ -1,16 +1,17 @@
 ---
 layout: post
-title:  "Try MS Exchange Online"
+title:  "试用微软 Exchange Online"
 ---
 
-For a long time, I have prejudice of services provided by `Microsoft`.
+试用 微软`Exchange Online`提供的企业邮箱服务。
 
-So, this time, for email system on private domain, I decide to use `MS Exchange Online`
+很长一段时间我都对微软系的服务抱有偏见。
 
-The configuration process is very `Microsoft-style`. 
+所以，这次我打算做一次尝试，用 `Exchange Online` 托管这个域名的邮箱。果断没有选择世纪互联提供的服务，选了国际版的。
 
-When I opened the dashboard, I saw tens of page entries, which mean hundreds of configurable items are waiting for me.
+怎么说呢，整个配置过程非常的微软风，当我打开控制台的时候，左边边栏将近十个入口，加起来估计有近百个可以配置的选项。
 
-Of cause, make it work is definitely quick and simple, but it also provides tons of options for advanced configurations, and all of them do make sense.
+当然，让这个东西跑起来还是很简单的，DNS配置下SPF，MX纪录什么的，马上就可以用了。
+但是如果是几百上千人的公司，可能就需要复杂的分组，权限控制，审核神马的。
 
-Complex and reliable, this is my conclusion.
+有种，复杂的可靠感。

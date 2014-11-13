@@ -29,11 +29,11 @@ about: 'about.html'
     <article class="post">
         <header class="post-header">
             <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-            <span class="post-meta"><time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date_to_string }}</time> {{!tags prefix="on "}}</span>
+            <span class="post-meta"><time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%Y年%m月%d日" }}</time> {{!tags prefix="分类 "}}</span>
 
         </header>
         <section class="post-excerpt">
-            {{ post.excerpt }}
+            {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
         </section>
     </article>
 
@@ -43,18 +43,17 @@ about: 'about.html'
 
         {% if paginator.previous_page %}
           {% if paginator.previous_page == 1 %}
-          <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
+          <a class="newer-posts" href="/" title="上一页">&laquo; 更新的文章</a>
           {% else %}
-          <a class="newer-posts" href="/page{{ paginator.previous_page }}/" title="Previous Page">&laquo; Newer Posts</a>
+          <a class="newer-posts" href="/page{{ paginator.previous_page }}/" title="上一页">&laquo; 更新的文章</a>
           {% endif %}
         {% endif %}
 
-        <span class="page-number"> Page {{paginator.page}} of {{paginator.total_pages}} </span>
+        <span class="page-number"> 第 {{paginator.page}} / {{paginator.total_pages}} 页</span>
         
         {% if paginator.next_page %} 
-        <a class="older-posts" href="/page{{ paginator.next_page }}/" title="Next Page">Older Posts &raquo;</a>
+        <a class="older-posts" href="/page{{ paginator.next_page }}/" title="下一页">更旧的文章 &raquo;</a>
         {% endif %} 
     </nav>
-    
 
 </main>
