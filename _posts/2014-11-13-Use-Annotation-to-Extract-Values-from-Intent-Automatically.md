@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用 Java Annotation 来自动获取 Intent 的 Extra
+title: 使用 Annotation 自动获取 Intent 传值
 ---
 
 没错，是的，这是一篇 Android 相关的文章，`Annotation(注解)` 是 Java 最丧病的一个能力，合理使用可以省下一大坨代码。

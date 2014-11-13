@@ -1,6 +1,6 @@
 ---
 layout: post
-title: XCode 6.1 SourceKit 崩到天昏地暗
+title: XCode 6.1 崩溃
 ---
 
 今天出现了无解的一幕，有一个 `Swift` 文件，只要一编辑它，XCode 的 SourceKit 就必崩无误。然后代码高亮和提醒就完全嗝屁了。

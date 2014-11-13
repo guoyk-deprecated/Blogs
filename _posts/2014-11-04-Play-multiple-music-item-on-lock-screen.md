@@ -1,6 +1,6 @@
 ---
 layout: post
-title: iOS 后台播放音频的坑
+title: iOS 后台播放音频
 ---
 在开发同人音声播放器 `SheepPlayer` 中，遇到了一些 iOS 应用后台的一些坑。
 
