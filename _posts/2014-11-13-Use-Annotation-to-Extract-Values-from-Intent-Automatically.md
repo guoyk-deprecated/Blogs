@@ -7,7 +7,7 @@ title: Use Annotation to Extract Values from Intent Automatically
 
 Consider the situation when you want to extract values from `intent` during `onCreate` of a Activity.
 
-The normal way, you have to call `this.field = intent.getSerializableExtra("field_name")` one by one, and type the key passing in carefully.
+The normal way, you have to call `this.field = intent.getSerializableExtra("field_name")` one by one, and type the key being passed in carefully.
 
 With Java Annotation, this process can be simplified to one word by adding a bit seasoning.
 
