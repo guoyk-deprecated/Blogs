@@ -2,7 +2,6 @@
 layout: default
 title: Home
 cover: '/assets/images/cover.png'
-about: 'about.html'
 ---
 
 <header class="site-head" {% if page.cover %} style="background-image: url({{ page.cover }})"{% endif %}>
@@ -15,11 +14,17 @@ about: 'about.html'
             {% endif %}
             <h1 class="blog-title">{{ site.name }}</h1>
             <h2 class="blog-description"> 
-                {{ site.description }}
-                {% if page.about %} <br/><a href='{{ site.baseurl }}{{ page.about }}'>关于我</a> {% endif %}
-                &nbsp;<a href="mailto:{{ site.author_email }}">hi@yanke.io</a>
+              {{ site.description }}
+              <br/>
+              <a class="icon-email" href="mailto:{{ site.author_email }}"></a>
+              &nbsp;
+              <a class="icon-twitter" href="{{ site.author_twitter }}"></a>
+              &nbsp;
+              <a class="icon-github" href="{{ site.author_github }}"></a>
+              &nbsp;
+              <a class="icon-weibo" href="{{ site.author_weibo }}"></a>
             </h2>
-        </div>
+          </div>
     </div>
 </header>
 

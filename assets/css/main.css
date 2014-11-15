@@ -33,3 +33,6 @@ img.profile {
   	border-radius: 50px;
 }
 
+.blog-description a {
+  text-decoration: none;
+}
