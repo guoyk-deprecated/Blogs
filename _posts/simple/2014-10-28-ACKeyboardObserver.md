@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 简单易用的ACKeyboardObserver
+title: "[杂记] 简单易用的ACKeyboardObserver"
 ---
 
 这是一个非常小的类，主要目的是把键盘相关的6个通知，转换为Delegate方式。

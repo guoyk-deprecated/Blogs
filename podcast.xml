@@ -37,8 +37,8 @@ layout: null
       <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
       <itunes:summary>{{ post.content | xml_escape }}</itunes:summary>
       <itunes:image href="{{ site.podcast_cover }}" />
-      <enclosure url="{{ site.podcast_host }}{{ post.file_path }}" length="{{ post.length }}" type="audio/x-m4a" />
-      <guid>{{ site.podcast_host }}{{ post.file_path }}</guid>
+      <enclosure url="{{ post.audio_url }}" length="{{ post.length }}" type="audio/x-m4a" />
+      <guid>{{ post.audio_url }}</guid>
       <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S" }} GMT</pubDate>
       <itunes:duration>{{ post.duration }}</itunes:duration>
       <itunes:keywords>{{ site.podcast_keywords }}</itunes:keywords>

@@ -11,6 +11,10 @@
     <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    {% if page.video_url %}
+    <link href="/assets/video-js/video-js.min.css" rel="stylesheet">
+    {% endif %}
+
     <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
@@ -19,7 +23,7 @@
     <!-- Customisation  -->
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
 
-</head>
+    </head>
 <body class="home-template">
 
     {{ content }}
@@ -40,6 +44,19 @@
     <script type="text/javascript" src="/assets/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    {% if page.video_url %}
+    <script src="/assets/video-js/video.js"></script>
+    {% endif %}
+
+    {% if page.audio_url %}
+    <script src="/assets/audiojs/audio.min.js"></script>
+    <script>
+      audiojs.events.ready(function() {
+        var as = audiojs.createAll();
+      });
+    </script>
+    {% endif %}
 
     <!-- Google Analytics Tracking code -->
     <script type="text/javascript">

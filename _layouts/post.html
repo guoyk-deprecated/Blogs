@@ -25,6 +25,25 @@ archive: false
 
         <h1 class="post-title">{{ page.title }}</h1>
 
+        {% if page.audio_url %}
+        <div class="audio-player">
+          <audio src="{{ page.audio_url }}" preload="auto"></audio>
+        </div>
+        {% endif %}
+
+        {% if page.video_url %}
+
+        <div class="video-js-wrapper">
+        <video id="video_1" class="video-js vjs-default-skin"
+        controls preload="auto" height="600" width="auto"
+        poster="{{ page.video_preview }}">
+        <source src="{{ page.video_url }}" type='video/mp4' />
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+        </video>
+      </div>
+
+        {% endif %}
+
         <section class="post-content">
             {{content}}
         </section>

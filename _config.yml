@@ -28,7 +28,6 @@ podcast_summary: '自黑,扯谈,聊一聊那些程序猿与二次元的话题'
 podcast_owner: 'YANKE Guo'
 podcast_email: 'podcast@yanke.io'
 podcast_cover: 'http://static.yanke.io/podcast/logo.png'
-podcast_host: 'http://static.yanke.io/podcast'
 podcast_feed: 'http://blog.yanke.io/podcast.xml'
 podcast_categories:
   - 'Technology'

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "yanke.io 到手"
+title:  "[杂记] yanke.io 到手"
 ---
 
 果断买下`yanke.io`这个域名。

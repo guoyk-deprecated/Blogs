@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 记一次 iOS Debug 三重坑
+title: "[iOS] 记一次Debug三重坑"
 ---
 
 最近，在Debug的时候，掉进了一个三重坑，许久才爬上来。

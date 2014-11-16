@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "试用微软 Exchange Online"
+title:  "[杂记] 试用微软 Exchange Online"
 ---
 
 试用 微软`Exchange Online`提供的企业邮箱服务。
