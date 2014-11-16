@@ -16,3 +16,20 @@ author_email:   'hi@yanke.io'
 author_twitter: 'https://twitter.com/yanke_guo'
 author_github:  'https://github.com/yanke-guo'
 author_weibo:   'http://weibo.com/didierguo'
+
+# For Podcast
+
+podcast_title: '程序猿与二次元'
+podcast_link:  'http://blog.yanke.io'
+podcast_author: 'Yanke Guo'
+podcast_subtitle: '自黑,扯谈,聊一聊那些程序猿与二次元的话题'
+podcast_keywords: '网络,程序员,二次元,萌妹子,萝莉控'
+podcast_summary: '自黑,扯谈,聊一聊那些程序猿与二次元的话题'
+podcast_owner: 'YANKE Guo'
+podcast_email: 'podcast@yanke.io'
+podcast_cover: 'http://static.yanke.io/podcast/logo.png'
+podcast_host: 'http://static.yanke.io/podcast'
+podcast_feed: 'http://blog.yanke.io/podcast.xml'
+podcast_categories:
+  - 'Technology'
+  - 'Gadgets'

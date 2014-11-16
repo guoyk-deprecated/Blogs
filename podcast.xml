@@ -1,0 +1,49 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+
+  <channel>
+
+    <title>{{ site.podcast_title }}</title>
+    <link>{{ site.podcast_link }}</link>
+    <language>zh-CN</language>
+
+    <copyright>&#xA9; 2014 {{ site.podcast_author }}</copyright>
+    <itunes:subtitle>{{ site.podcast_subtitle }}</itunes:subtitle>
+    <itunes:author>{{ site.podcast_author }}</itunes:author>
+    <itunes:keywords>{{ site.podcast_keywords }}</itunes:keywords>
+    <itunes:summary>{{ site.podcast_summary }}</itunes:summary>
+    <description>{{ site.podcast_summary }}</description>
+
+    <itunes:owner>
+      <itunes:name>{{ site.podcast_owner }}</itunes:name>
+      <itunes:email>{{ site.podcast_email }}</itunes:email>
+    </itunes:owner>
+    <itunes:image href="{{ site.podcast_cover }}" />
+
+    {% for cat in site.podcast_categories %}
+    <itunes:category text="{{ cat }}" />
+    {% endfor %}
+
+    <itunes:new-feed-url>{{ site.podcast_feed }}</itunes:new-feed-url>
+
+    {% for post in site.categories.podcast limit: 10 %}
+    <item>
+      <title>{{ post.title }}</title>
+      <itunes:author>{{ site.podcast_author }}</itunes:author>
+      <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
+      <itunes:summary>{{ post.content | xml_escape }}</itunes:summary>
+      <itunes:image href="{{ site.podcast_cover }}" />
+      <enclosure url="{{ site.podcast_host }}{{ post.file_path }}" length="{{ post.length }}" type="audio/x-m4a" />
+      <guid>{{ site.podcast_host }}{{ post.file_path }}</guid>
+      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S" }} GMT</pubDate>
+      <itunes:duration>{{ post.duration }}</itunes:duration>
+      <itunes:keywords>{{ site.podcast_keywords }}</itunes:keywords>
+    </item>
+    {% endfor %}
+
+  </channel>
+</rss>

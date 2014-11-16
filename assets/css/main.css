@@ -36,3 +36,7 @@ img.profile {
 .blog-description a {
   text-decoration: none;
 }
+
+.audio-player {
+  margin: 1.2em 0;
+}
