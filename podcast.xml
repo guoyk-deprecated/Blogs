@@ -32,7 +32,7 @@ layout: null
 
     {% for post in site.categories.podcast limit: 10 %}
     <item>
-      <title>{{ post.title }}</title>
+      <title>{{ post.podcast_title }}</title>
       <itunes:author>{{ site.podcast_author }}</itunes:author>
       <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
       <itunes:summary>{{ post.content | xml_escape }}</itunes:summary>

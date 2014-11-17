@@ -3,6 +3,7 @@ layout: post
 categories: podcast
 date: 2014-11-16 13:25:18
 title: "[程序员与二次元] #0 测试"
+podcast_title: '#0 测试'
 subtitle: '冒烟测试是非常重要滴'
 duration: 0:08
 length: 147456
