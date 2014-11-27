@@ -12,10 +12,10 @@ cover: '/assets/images/cover.png'
                 </a>
             {% endif %}
             <h1 class="blog-title">{{ site.name }}</h1>
-            <h2 class="blog-description"> 
+            <h2 class="blog-description">
               {{ site.description }}
             </h2>
-            <h2 class="author-links"> 
+            <h2 class="author-links">
               <a class="icon-email" href="mailto:{{ site.author_email }}"></a>
               &nbsp;
               <a class="icon-twitter" href="{{ site.author_twitter }}"></a>
@@ -23,6 +23,8 @@ cover: '/assets/images/cover.png'
               <a class="icon-github" href="{{ site.author_github }}"></a>
               &nbsp;
               <a class="icon-weibo" href="{{ site.author_weibo }}"></a>
+              &nbsp;
+              <a class="icon-dollar" href="/donate.html"></a>
             </h2>
           </div>
     </div>
@@ -56,10 +58,10 @@ cover: '/assets/images/cover.png'
         {% endif %}
 
         <span class="page-number"> 第 {{paginator.page}} / {{paginator.total_pages}} 页</span>
-        
-        {% if paginator.next_page %} 
+
+        {% if paginator.next_page %}
         <a class="older-posts" href="/page{{ paginator.next_page }}/" title="下一页">更旧的文章 &raquo;</a>
-        {% endif %} 
+        {% endif %}
     </nav>
 
 </main>
