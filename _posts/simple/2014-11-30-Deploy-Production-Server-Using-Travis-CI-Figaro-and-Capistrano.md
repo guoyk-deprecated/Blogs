@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Deploy Production Server Using Travis-CI, Figaro and Capistrano'
+title: '[OP] Deploy Production Server Using Travis-CI, Figaro and Capistrano'
 ---
 
 Recently I've successfully made a try to deploy production server of [MAGI Systems](https://magi.systems) with [Travis CI](http://travis-ci.org).
