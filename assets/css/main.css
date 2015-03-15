@@ -60,3 +60,7 @@ img.profile {
   margin: auto auto;
   text-align: center;
 }
+
+.post-content img {
+  display: inline;
+}
