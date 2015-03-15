@@ -27,6 +27,8 @@ Model.all.order("happy15_count DESC, id ASC").limit(100)
 
 ```
 
+---
+
 Our project is planning a promotion, which include a ranking.
 
 So I come about a extreme easy way to implement that.

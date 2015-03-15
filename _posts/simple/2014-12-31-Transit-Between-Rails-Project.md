@@ -22,6 +22,8 @@ app/jobs/
 
 数据库的Schema和Migration必须要共享。然后，我通过重型的Model层，将Controller轻量化，从而使这种方式的连接更加高效。
 
+---
+
 When I was young and innocent (LOL.), my Rails project depends on too much hacks, and I move to `AngularJS` in lack of consideration. These problems lead to a huge unmaintainable project.
 
 So I move on to next generation of project. To make a smooth transition, I use `git submodule` and `symbol link` to combine them together.

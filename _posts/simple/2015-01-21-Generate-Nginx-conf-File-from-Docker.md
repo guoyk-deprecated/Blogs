@@ -55,6 +55,8 @@ mkdir -p $CONFIG_PATH
 nginx -s reload
 ```
 
+---
+
 I've thought out the proper way to reverse proxy Docker web containers with Nginx;
 
 Then I got a minimal solution, regenerate nginx upstream file and reload each time container changes.
