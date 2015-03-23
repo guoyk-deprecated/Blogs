@@ -68,3 +68,22 @@ img.profile {
 .post-title a {
   font-family: 'Helvetica','STHeiti','Microsoft YaHei', sans-serif;
 }
+
+.author-projects {
+  margin-top: 1.4rem;
+}
+
+.author-projects a {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  text-decoration: none;
+}
+
+img.project-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.blog-title {
+  font-family: 'Helvetica','STHeiti','Microsoft YaHei', sans-serif;
+}
