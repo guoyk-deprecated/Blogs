@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Swift] Achievement: Crash the XCode with a Sigle Line of Code"
+title: "[Swift] Achievement: Crash the XCode with a Single Line of Code"
 ---
 
 我只是想试着写一个用来偷懒的扩展。
