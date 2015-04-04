@@ -58,6 +58,28 @@
     </script>
     {% endif %}
 
+    <!-- YMJSBridge Test -->
+    <script type="text/javascript">
+      // 声明一个统一的onReady方法
+      function onYMJSBridgeReady(callback) {
+        if (window.YMJSBridge) {
+          callback(YMJSBridge);
+        } else {
+          document.addEventListener('YMJSBridgeReady', function() {
+            callback(YMJSBridge)
+          }, false);
+        }
+      }
+
+      // 通过onReady方法获取到YMJSBridge对象
+      onYMJSBridgeReady(function(bridge) {
+        // 进行调用
+        bridge.setBounce(false);
+        bridge.setTitleColor('ffffff');
+        bridge.setTitleBackgroundColor('223344');
+      })
+    </script>
+
     <!-- Google Analytics Tracking code -->
     <script type="text/javascript">
 
