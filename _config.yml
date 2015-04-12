@@ -11,7 +11,7 @@ paginate: 15
 baseurl:        '/'
 url:            'http://blog.yanke.io'
 author:         'YANKE Guo'
-author_avatar:  '/assets/images/profile.png'
+author_avatar:  '/assets/images/avatar.png'
 author_email:   'hi@yanke.io'
 author_twitter: 'https://twitter.com/yanke_guo'
 author_github:  'https://github.com/yanke-guo'
