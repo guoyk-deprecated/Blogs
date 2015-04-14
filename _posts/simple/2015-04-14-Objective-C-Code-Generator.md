@@ -79,6 +79,109 @@ puts "Done !"
 
 ### 分享一些我用到的模板
 
+### JSONModel 生成器
+
+`Nova/Data/Models.yml` 里面放上需要生成的 Class 的定义,格式如下
+
+```yaml
+ClassA:
+  id: number, required, index
+  property_b: ClassB
+ClassB:
+  id: number, required, index
+  property_c: string, ignored
+```
+
+就可以了。
+
+Models.h.erb
+
+```erb
+#import <JSONModel/JSONModel.h>
+
+//  前置声明
+
+<% data.keys.each do |clazz| %>
+@class <%= clazz %>;
+<% end %>
+
+<% data.keys.each do |clazz| %>
+@protocol <%= clazz %> @end
+<% end %>
+
+//  定义
+<% data.keys.each do |clazz| %>
+@interface <%= clazz %> : JSONModel
+<% data[clazz].each do |key, config| %>
+<%= gen_jsonmodel_property(key, config) %>
+<% end %>
+@end
+<% end %>
+```
+
+Models.m.erb
+
+```erb
+#import "Models.h"
+
+<% data.keys.each do |clazz| %>
+@implementation <%= clazz %> @end
+<% end %>
+```
+
+JSONModelPropertyGenerator.rb (放在 `Helpers/`)
+
+```ruby
+def gen_jsonmodel_property(key, value)
+  configs = value.split(',').map do |str|
+  str.strip
+  end
+  type = configs.shift
+  type_mod = []
+
+# Type Transform
+  if type == 'string'
+  type = 'NSString'
+  end
+  if type == 'number'
+  type = 'NSNumber'
+  end
+  if type == 'number'
+  type = 'NSNumber'
+  end
+  if type == 'array'
+  type = 'NSArray'
+  end
+  if type.start_with? 'array<'
+  type_mod << type.match(/array<(.+)>/)[1]
+  type = 'NSArray'
+  end
+
+# Check modifier
+  configs.each do |mod|
+  raise "Not accepted modifier: #{mode}" unless ['required','index', 'ignored'].include? mod
+  end
+
+# Modifier
+  if configs.include? 'ignored'
+  type_mod << 'Ignored'
+  end
+  if configs.include? 'index'
+  type_mod << 'Index'
+  end
+  unless configs.include? 'required'
+  type_mod << 'Optional'
+  end
+
+# Join type with mod
+  if type_mod.length > 0
+  type += "<#{type_mod.join(',')}>"
+  end
+
+  "@property (nonatomic, strong) #{type} * #{key};"
+  end
+```
+
 #### 字符串混淆
 
 `Nova/Data/SecureStringProvider.yml` 里面放上`key-value`格式的需要进行混淆的字符串,最终生成的`SecureStringProvider`就会有一堆公用方法可以调用，获取到这些`String`。
